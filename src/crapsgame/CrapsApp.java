@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class CrapsApp {
     public static void main(String[] args) {
         // Create the game objects
-        Die die1 = new Die();
-        Die die2 = new Die();
+        Dice die1 = new Dice();
+        Dice die2 = new Dice();
         Scanner scan = new Scanner(System.in);
 
         while (true) {

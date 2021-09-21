@@ -2,11 +2,11 @@ package crapsgame;
 
 import java.util.Random;
 
-public class Die {
+public class Dice {
 
     private int dieRoll;
 
-    public Die() {
+    public Dice() {
         dieRoll = 0;
     }
 

@@ -5,23 +5,47 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+
+        // Scanner for user input
         Scanner scan = new Scanner(System.in);
+
+        // A players score during their turn.
         int turnScore = 0;
+
+        // The total score of player 1
         int p1TotalScore = 0;
+
+        // The total score of player 2
         int p2TotalScore = 0;
+
+        // Input from user if they wish to roll again
         String again = "";
+
+        // Input from user if they want to take their turn
         String wantsToPlay = "";
+
+        // Input from user if they want to start a new game
         String newGame = "";
+
+        // Dice constructor creates a dice.
         Dice die = new Dice();
 
+        // UI
         System.out.println("Welcome to the game of Pigs!");
         System.out.println("Do you want to start a new game? (y/n)");
         newGame = scan.next();
+
+        // If the user doesn't want to start a new game the code breaks and exits here.
+        // Else it continues
         if (newGame.charAt(0) == 'n') {
             System.out.println("Sad :( you didn't to play!");
         } else {
+
+            // Player constructors for two players.
             Player player1 = new Player();
             Player player2 = new Player();
+
+            // Ensures the game doesn't continue if a players total score exceeds 100
             while (p1TotalScore <= 100 && p2TotalScore <= 100) {
                 System.out.println("Player 1, Do you wish to play? (y/n)");
                 wantsToPlay = scan.next();

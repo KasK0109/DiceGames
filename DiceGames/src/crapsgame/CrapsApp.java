@@ -1,4 +1,4 @@
-package carpsgame;
+package crapsgame;
 
 
 

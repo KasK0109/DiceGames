@@ -1,4 +1,4 @@
-package carpsgame;
+package piggame2;
 
 public class DiceThrower {
     // 2 dice with face count of 6 each
@@ -16,8 +16,8 @@ public class DiceThrower {
     private int totalFaceValue;
     private int numberOfSixes;
     private int duplicates;
-    private int maxSum = 0;
-    private int averageSum = 0;
+    private int maxSum;
+    private int averageSum;
 
     /**
      * Creates a DiceThrower object.
@@ -25,8 +25,8 @@ public class DiceThrower {
     // TODO: Make a constructor that initialises all fields.
     public DiceThrower() {
         this.die1 = new Die();
-        this.die2 = new Die();
-        rollCount = 1;
+        // this.die2 = new Die();
+        rollCount = 0;
         totalFaceValue = 0;
         numberOfSixes = 0;
         duplicates = 0;
@@ -67,13 +67,13 @@ public class DiceThrower {
     public void roll() {
         // TODO: Roll the 2 dice.
         die1.roll();
-        die2.roll();
+//        die2.roll();
         if (die1.getFaceValue() == 6) {
             numberOfSixes++;
         }
-        if (die2.getFaceValue() == 6) {
-            numberOfSixes++;
-        }
+//        if (die2.getFaceValue() == 6) {
+//            numberOfSixes++;
+//        }
         rollCount++;
 
         if (maxSum < sum()) {
@@ -82,11 +82,11 @@ public class DiceThrower {
 
         averageSum = totalFaceValue / rollCount;
 
-        if (die1.getFaceValue() == die2.getFaceValue()) {
-            duplicates++;
-        }
+//        if (die1.getFaceValue() == die2.getFaceValue()) {
+//            duplicates++;
+//        }
 
-        totalFaceValue = totalFaceValue + (die1.getFaceValue() + die2.getFaceValue());
+        totalFaceValue = totalFaceValue + (die1.getFaceValue());
     }
 
     /**
@@ -94,7 +94,7 @@ public class DiceThrower {
      */
     public int sum() {
         // TODO
-        return die1.getFaceValue() + die2.getFaceValue();
+        return die1.getFaceValue(); // + die2.getFaceValue();
     }
 
     /**
@@ -103,7 +103,8 @@ public class DiceThrower {
      */
     public String rollDescription() {
         // TODO: Use the method: String.format().
-        String description = String.format(("(%d, %d)"),die1.getFaceValue(), die2.getFaceValue());
+        String description = String.format(("(%d)"),die1.getFaceValue()); //, die2.getFaceValue());
         return description;
     }
 }
+

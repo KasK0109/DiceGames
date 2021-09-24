@@ -1,4 +1,4 @@
-package simplegame;
+package crapsgame;
 
 public class DiceThrower {
     // 2 dice with face count of 6 each
@@ -16,8 +16,8 @@ public class DiceThrower {
     private int totalFaceValue;
     private int numberOfSixes;
     private int duplicates;
-    private int maxSum;
-    private double averageSum;
+    private int maxSum = 0;
+    private int averageSum = 0;
 
     /**
      * Creates a DiceThrower object.
@@ -26,7 +26,7 @@ public class DiceThrower {
     public DiceThrower() {
         this.die1 = new Die();
         this.die2 = new Die();
-        rollCount = 0;
+        rollCount = 1;
         totalFaceValue = 0;
         numberOfSixes = 0;
         duplicates = 0;
@@ -57,11 +57,7 @@ public class DiceThrower {
         return maxSum;
     }
 
-    public void setAverageSum() {
-        averageSum = (double) (totalFaceValue/ rollCount);
-    }
-
-    public double getAverageSum() {
+    public int getAverageSum() {
         return averageSum;
     }
 
@@ -83,6 +79,8 @@ public class DiceThrower {
         if (maxSum < sum()) {
             maxSum = sum();
         }
+
+        averageSum = totalFaceValue / rollCount;
 
         if (die1.getFaceValue() == die2.getFaceValue()) {
             duplicates++;

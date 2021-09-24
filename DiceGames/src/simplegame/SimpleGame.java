@@ -27,6 +27,8 @@ public class SimpleGame {
         }
         scanner.close();
 
+        thrower.setAverageSum();
+
         System.out.print("\nResults:\n");
         System.out.print("---------\n");
         // TODO: Print all the results:
@@ -39,7 +41,7 @@ public class SimpleGame {
         System.out.println();
         System.out.printf("Total face value: %d", thrower.getTotalFaceValue());
         System.out.println();
-        System.out.printf("Average sum in one roll: %d",thrower.getAverageSum());
+        System.out.printf("Average sum in one roll: %f",thrower.getAverageSum());
         System.out.println();
         System.out.printf("Number of sixes: %d",thrower.getNumberOfSixes());
         System.out.println();

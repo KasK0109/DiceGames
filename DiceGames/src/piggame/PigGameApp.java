@@ -87,6 +87,14 @@ public class PigGameApp {
 
                     } else {
                         while (!someoneWon) {
+
+                            int ficScore = turnScore + p1TotalScore;
+                            if (ficScore >= endGoal) {
+                                System.out.println(player1.getName() + " has reached the end goal and WON!");
+                                someoneWon = true;
+                                break;
+                            }
+
                             die1.roll(); // Rolls the die
                             int side = die1.roll();
                             System.out.println("You rolled a: " + side); // Prints the die roll
@@ -125,6 +133,9 @@ public class PigGameApp {
 
                     } else {
                         while (!someoneWon) { // --''--
+
+
+
                             die1.roll();
                             int side = die1.roll();
                             System.out.println("You rolled a: " + side);
@@ -216,60 +227,67 @@ public class PigGameApp {
                                 }
                             }
                         }
-                        System.out.println("Player 2, do you want to play? (y/n)");
-                        wantsToPlay = scan.next();
-                        if (wantsToPlay.charAt(0) == 'n') {
 
-                            // Program exits - needs to go to player 1 again.
-
+                        if (p1TotalScore >= endGoal) {
+                            someoneWon = true;
+                            break;
                         } else {
-                            while (!someoneWon) {
-                                die1.roll();
-                                die2.roll();
-                                int side1 = die1.roll();
-                                int side2 = die2.roll();
-                                System.out.println("You rolled a: " + side1 + " and a: " + side2);
-                                if (side1 == side2 && !(side1 == 1)) {
-                                    System.out.println("You rolled a pair! Extra roll awarded!");
-                                    turnScore += (side1 + side2);
-                                } else {
-                                    if (side1 != 1 && side2 != 1) {
+                            System.out.println("Player 2, do you want to play? (y/n)");
+                            wantsToPlay = scan.next();
+                            if (wantsToPlay.charAt(0) == 'n') {
+
+                                // Program exits - needs to go to player 1 again.
+
+                            } else {
+                                while (!someoneWon) {
+                                    die1.roll();
+                                    die2.roll();
+                                    int side1 = die1.roll();
+                                    int side2 = die2.roll();
+                                    System.out.println("You rolled a: " + side1 + " and a: " + side2);
+                                    if (side1 == side2 && !(side1 == 1)) {
+                                        System.out.println("You rolled a pair! Extra roll awarded!");
                                         turnScore += (side1 + side2);
+                                        System.out.println();
                                     } else {
-                                        if ((side1 == 1 && side2 != 1) || (side1 != 1 && side2 == 1)) {
-                                            System.out.println("You rolled a one! Turn over.");
-                                            turnScore = 0;
-                                            break;
+                                        if (side1 != 1 && side2 != 1) {
+                                            turnScore += (side1 + side2);
                                         } else {
-                                            if (side1 == 1 && side2 == 1) {
-                                                System.out.println("You rolled a double 1 and lost all your points!");
-                                                p2TotalScore = 0;
+                                            if ((side1 == 1 && side2 != 1) || (side1 != 1 && side2 == 1)) {
+                                                System.out.println("You rolled a one! Turn over.");
+                                                turnScore = 0;
+                                                break;
+                                            } else {
+                                                if (side1 == 1 && side2 == 1) {
+                                                    System.out.println("You rolled a double 1 and lost all your points!");
+                                                    p2TotalScore = 0;
+                                                    break;
+                                                }
+                                            }
+                                            break;
+                                        }
+
+                                        System.out.println("Turn score: " + turnScore);
+
+
+                                        System.out.println("Do you want to roll again? (y/n)");
+                                        again = scan.next();
+                                        if (again.charAt(0) == 'n') {
+                                            p2TotalScore += turnScore;
+                                            if (p2TotalScore >= endGoal) {
+                                                System.out.println(player2.getName() + " reached the end goal and WINS!");
+                                                someoneWon = true;
                                                 break;
                                             }
+                                            turnScore = 0;
+                                            System.out.println("You ended your turn, your total score so far is: " + p2TotalScore);
+                                            break;
                                         }
-                                        break;
-                                    }
-
-                                    System.out.println("Turn score: " + turnScore);
-
-
-                                    System.out.println("Do you want to roll again? (y/n)");
-                                    again = scan.next();
-                                    if (again.charAt(0) == 'n') {
-                                        p2TotalScore += turnScore;
                                         if (p2TotalScore >= endGoal) {
-                                            System.out.println(player2.getName() + " reached the end goal and WINS!");
+                                            System.out.println(player2.getName() + " has reached the end goal and WON!");
                                             someoneWon = true;
                                             break;
                                         }
-                                        turnScore = 0;
-                                        System.out.println("You ended your turn, your total score so far is: " + p2TotalScore);
-                                        break;
-                                    }
-                                    if (p2TotalScore >= endGoal) {
-                                        System.out.println(player2.getName() + " has reached the end goal and WON!");
-                                        someoneWon = true;
-                                        break;
                                     }
                                 }
                             }
@@ -280,4 +298,3 @@ public class PigGameApp {
         }
     }
 }
-
